@@ -7,6 +7,7 @@ input[type="text"] {
   padding: 6px 16px;
   border: none;
   outline: none;
+  margin-right: 8px;
 }
 
 button {
