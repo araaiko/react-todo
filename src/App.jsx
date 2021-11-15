@@ -32,6 +32,16 @@ export const App = () => {
     setIncompleteTodos(newTodos);
   };
 
+  // 完了ボタン
+  const onClickComplete = (index) => {
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+    setIncompleteTodos(newIncompleteTodos);
+
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+    setCompleteTodos(newCompleteTodos);
+  };
+
   return (
     <>
       {/* 入力欄 */}
@@ -53,7 +63,7 @@ export const App = () => {
             return (
               <li key={todo} className="todo-item-wrap">
                 <div className="todo-text">{todo}</div>
-                <button>完了</button>
+                <button onClick={() => onClickComplete(index)}>完了</button>
                 <button onClick={() => onClickDelete(index)}>削除</button>
               </li>
             );
