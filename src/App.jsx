@@ -9,13 +9,10 @@ export const App = () => {
   };
 
   // 未完了リスト
-  const [incompleteTodos, setIncompleteTodos] = useState([
-    "ああああああ",
-    "いいいいい"
-  ]);
+  const [incompleteTodos, setIncompleteTodos] = useState([]);
 
   // 完了リスト
-  const [completeTodos, setCompleteTodos] = useState(["うううううう"]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
   // 追加ボタン
   const onClickAdd = () => {
@@ -40,6 +37,16 @@ export const App = () => {
 
     const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
     setCompleteTodos(newCompleteTodos);
+  };
+
+  // 戻すボタン
+  const onClickBack = (index) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+    setCompleteTodos(newCompleteTodos);
+
+    const newIncompleteTodos = [...incompleteTodos, completeTodos[index]];
+    setIncompleteTodos(newIncompleteTodos);
   };
 
   return (
@@ -75,11 +82,11 @@ export const App = () => {
       <div className="complete-area">
         <p className="todo-title">未完了のTODO</p>
         <ul>
-          {completeTodos.map((todo) => {
+          {completeTodos.map((todo, index) => {
             return (
               <li key={todo} className="todo-item-wrap">
                 <div className="todo-text">{todo}</div>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </li>
             );
           })}
