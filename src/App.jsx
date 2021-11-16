@@ -39,7 +39,7 @@ export const App = () => {
     setCompleteTodos(newCompleteTodos);
   };
 
-  // 戻すボタン
+  // 戻す
   const onClickBack = (index) => {
     const newCompleteTodos = [...completeTodos];
     newCompleteTodos.splice(index, 1);
